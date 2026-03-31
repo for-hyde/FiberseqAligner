@@ -1,0 +1,41 @@
+import os
+import pandas as pd
+
+configfile: "config/config.yaml"
+
+SAMPLES_DF = pd.read_csv(config["samples_file"])
+SAMPLES = {row.samplename: row.BAM for row in SAMPLES_DF.itertuples(index=False)}
+
+REF_FILE = config["reference_file"]
+REF_DIR = os.path.dirname(REF_FILE)
+
+OUTPUT_DIR = config["output_dir"]
+LOGS = f"{OUTPUT_DIR}/logs"
+
+include: "rules/alignments.smk"
+include: "rules/fibertools.smk"
+include: "rules/qc.smk"
+#include: "rules/deeptools.smk"
+
+rule all:
+    input:
+        expand(
+            os.path.join(
+                OUTPUT_DIR,
+                "alignments",
+                "{sample}",
+                "{sample}.sorted.nuc.bam.bai"
+            ),
+            sample=SAMPLES.keys()
+        ),#alignment and nucleosome labeling
+        #Generate QC report.
+        # expand(
+        #     os.path.join(
+        #         OUTPUT_DIR,
+        #         "qc",
+        #         "fiberqc",
+        #         "{sample}"
+        #     ),
+        #     sample=SAMPLES.keys()
+        # ),
+        

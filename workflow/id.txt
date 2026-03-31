@@ -1,0 +1,11 @@
+snakemake \
+  --profile profile/slurm \
+  --configfile config/config.yaml \
+  -p \
+  /mnt/sds-hd/sd17l002/p/SingleMolculeFootprinting/EpiCypher/data/processed/aligned/18.03.2026/pileups/*/*.pileup.bedgraph \
+  --force
+  -n
+
+snakemake --profile profiles/slurm --configfile config/config.yaml \
+  --force \
+  -n

@@ -1,0 +1,8 @@
+name: deeptools_env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - deeptools
+  - fibertools-rs
