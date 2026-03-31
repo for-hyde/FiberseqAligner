@@ -1,0 +1,1 @@
+Was running into issues getting the aligner to work in the previous snakemake workflow. I relied on apptainer containers for the environment production, but have been having issues getting it to function properly. I'll make this as a quick and easy aligner for PacBio HIFI reads to get the pipeline prepared for the FIRE pipeline. 
