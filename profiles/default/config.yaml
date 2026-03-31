@@ -1,0 +1,7 @@
+use-conda: true
+printshellcmds: true
+software-deployment-method: conda
+
+latency-wait: 60
+rerun-incomplete: true
+printshellcmds: false
